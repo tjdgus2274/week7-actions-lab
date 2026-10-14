@@ -1,0 +1,21 @@
+name: HTML Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v7
+
+      - name: Check index.html exists
+        run: test -f index.html
+
+      - name: Check title tag
+        run: grep -q "<title>" index.html
+
+      - name: Check h1 tag
+        run: grep -q "<h1>" index.html
